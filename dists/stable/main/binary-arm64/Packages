@@ -1,0 +1,18 @@
+Package: qrbin
+Version: 0.1.9-1
+Architecture: arm64
+Maintainer: pesty-sh <pesty@pesty.sh>
+Section: utils
+Priority: optional
+Depends: libc6 (>= 2.27)
+Installed-Size: 3292
+Filename: pool/main/q/qrbin/qrbin_0.1.9-1_arm64.deb
+Size: 1678064
+MD5sum: 8d4916117e8f1c65b33416a22f1f829b
+SHA1: 2defdb7793cbf353e382013b2f753b160c9db88a
+SHA256: c801e1e709692cdafa40dcd6765a09e07b7ad848fd9ddd460c182a08309feea8
+Description: Minimal offline QR code generator
+ qrbin turns text into a QR image and writes it to stdout.
+ Linked against glibc 2.27, so this package installs on Ubuntu 18.04,
+ 22.04, and 24.04, and on Debian with glibc 2.27 or newer.
+ The program does not contact the network.

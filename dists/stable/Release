@@ -1,0 +1,23 @@
+Origin: pesty-sh
+Label: pesty
+Suite: stable
+Codename: stable
+Date: Sat, 07 Nov 2026 12:35:22 UTC
+Architectures: amd64 arm64
+Components: main
+Description: pesty-sh packages
+MD5Sum:
+ a75667ed8f56cfafab24777a76ccbdae 675 main/binary-amd64/Packages
+ 8a8ea53c2a2a99f59e046728669dbedc 484 main/binary-amd64/Packages.gz
+ e8647114f33fa3ddc18162926c87bbff 675 main/binary-arm64/Packages
+ f8131e6a71bc4a2dd6472ba9b9b1df1c 482 main/binary-arm64/Packages.gz
+SHA1:
+ 4a922abb489d2bfe6bb5496270282337fbea5cbc 675 main/binary-amd64/Packages
+ 0f7e5a737ef7f79db25e4b22cf56db47dc4396d3 484 main/binary-amd64/Packages.gz
+ dfe324f47bbd4ac70948ed25d9c2b82fdfcb83a5 675 main/binary-arm64/Packages
+ 0c41f14b109a82f580ab627a8655b7a7dca55e2f 482 main/binary-arm64/Packages.gz
+SHA256:
+ d34bbf5aa840b3cd3e3c9b367edf65d39021845eeb452b7c5bb563508736cf14 675 main/binary-amd64/Packages
+ 208585b980fe17a2c9e27dc73ec2cc690c402d41dcd9beca82ac7c3527560dfe 484 main/binary-amd64/Packages.gz
+ ac84c658cfbb664bbd85d437a6ebf13f220da5c2195c8db233bd5dfe958d2b4c 675 main/binary-arm64/Packages
+ 34e4ad4134173c108a81f94e933b9f844613a9e67149fbbae16cc1c732904d37 482 main/binary-arm64/Packages.gz
