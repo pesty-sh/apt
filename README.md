@@ -25,6 +25,8 @@ Apt picks the build for the machine. Intel and AMD use `amd64`. 64-bit ARM (incl
 
 On a Mac, the install is Homebrew: `brew install pesty-sh/tap/qrbin`.
 
+smashbin is the second package in this repository. It is built in `/Users/developers/Projects/pesty-sh/smashbin` with `make deb`, then published with the same `publish.py`. The package name is `smashbin`. The published version is `0.1.4-1`. The Mac install is `brew install pesty-sh/tap/smashbin`.
+
 The long version of this page, with a check of your system and the messages you may see, is [docs/apt.md](docs/apt.md).
 
 ## Install

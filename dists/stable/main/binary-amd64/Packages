@@ -16,3 +16,22 @@ Description: Minimal offline QR code generator
  Linked against glibc 2.27, so this package installs on Ubuntu 18.04,
  22.04, and 24.04, and on Debian with glibc 2.27 or newer.
  The program does not contact the network.
+
+Package: smashbin
+Version: 0.1.4-1
+Architecture: amd64
+Maintainer: pesty-sh <pesty@pesty.sh>
+Section: graphics
+Priority: optional
+Depends: libc6 (>= 2.27)
+Installed-Size: 2388
+Filename: pool/main/s/smashbin/smashbin_0.1.4-1_amd64.deb
+Size: 1081690
+MD5sum: f649a5a1b8230892d7f300cfa241f113
+SHA1: 0cae53475c317a1edc28763c8612c0275b24d44c
+SHA256: a6e7eb4fa083af3517ef5127b0cae926a62f0d67fe841223902a5ebe231b2143
+Description: Offline image smasher for GitHub avatars
+ smashbin strips metadata and shrinks a PNG, JPG, or GIF.
+ Linked against glibc 2.27, so this package installs on Ubuntu 18.04,
+ 22.04, and 24.04, and on Debian with glibc 2.27 or newer.
+ The program does not contact the network.
