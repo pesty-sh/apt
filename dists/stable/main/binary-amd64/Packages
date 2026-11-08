@@ -35,3 +35,22 @@ Description: Offline image smasher for GitHub avatars
  Linked against glibc 2.27, so this package installs on Ubuntu 18.04,
  22.04, and 24.04, and on Debian with glibc 2.27 or newer.
  The program does not contact the network.
+
+Package: smashbin
+Version: 0.1.5-1
+Architecture: amd64
+Maintainer: pesty-sh <pesty@pesty.sh>
+Section: graphics
+Priority: optional
+Depends: libc6 (>= 2.27)
+Installed-Size: 2413
+Filename: pool/main/s/smashbin/smashbin_0.1.5-1_amd64.deb
+Size: 1090962
+MD5sum: e246b28518b8d500950cf8936765a537
+SHA1: 69effa31c42b866e416219b428edd63b71e41dff
+SHA256: 140337799c98816210502826f65fb77d6dd21859e010bb98cd2e8e30e188b226
+Description: Offline image smasher for GitHub avatars
+ smashbin strips metadata and shrinks a PNG, JPG, or GIF.
+ Linked against glibc 2.27, so this package installs on Ubuntu 18.04,
+ 22.04, and 24.04, and on Debian with glibc 2.27 or newer.
+ The program does not contact the network.

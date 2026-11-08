@@ -2,22 +2,22 @@ Origin: pesty-sh
 Label: pesty
 Suite: stable
 Codename: stable
-Date: Sat, 07 Nov 2026 23:19:27 UTC
+Date: Sun, 08 Nov 2026 00:29:24 UTC
 Architectures: amd64 arm64
 Components: main
 Description: pesty-sh packages
 MD5Sum:
- 07b1ca6d6f11241006e44b8ae20537fc 1369 main/binary-amd64/Packages
- 0685c3248fed5c4566c24638a94af72d 693 main/binary-amd64/Packages.gz
- ac9a8fa4188a68d0756dd4a4ae240d65 1369 main/binary-arm64/Packages
- 5c23d6048e0d6ad5979807a689b80bbb 692 main/binary-arm64/Packages.gz
+ 9892061e371376d6bbdfe2e910615e0b 2063 main/binary-amd64/Packages
+ f7321ae8854db2833d9fb7018f98a961 809 main/binary-amd64/Packages.gz
+ b3181e2b901da18b0fd1539f384a8664 2063 main/binary-arm64/Packages
+ 69ce332fdf85a49459acf2e5f1e1ea10 805 main/binary-arm64/Packages.gz
 SHA1:
- b9f7e5cfc722fb4ee2e417304d4a31080896564a 1369 main/binary-amd64/Packages
- 8f008e43c68c130fbf6abef70ef82ee830497241 693 main/binary-amd64/Packages.gz
- 37578c1d55d7b7b8063aec3ea0a1ebdf94d38ad1 1369 main/binary-arm64/Packages
- 1f2ddfcd12aa861cab9fc8cff1fc188b7b00dce6 692 main/binary-arm64/Packages.gz
+ af9f0e1df56babb2f27e35a35c64a11897e9b8d5 2063 main/binary-amd64/Packages
+ 4cac6061f7ea4755c4473f69c84d743cec7e5f9c 809 main/binary-amd64/Packages.gz
+ 6f102773995dd6340e49e8e77adb6ec2ef994755 2063 main/binary-arm64/Packages
+ 481912a7e6c9d80d1f70a033d7e733b24aa1e8aa 805 main/binary-arm64/Packages.gz
 SHA256:
- bdb3b4c80381b1a6eaa3c2afc51bc91e7f2405018b039c38ce949a112c3745d0 1369 main/binary-amd64/Packages
- 4302356eb7d1b8fedda0089d02360967de1b145fe8d6d1cf232f3456f69443e0 693 main/binary-amd64/Packages.gz
- 5fd5f340b628da0b1705a35c8a03821216d1330f64b7ee6a47dec945bc3f50f4 1369 main/binary-arm64/Packages
- 662d3d71570a9ae1f493df6e42c6f5a06985aa71ab0ed5f290feab450fe4c127 692 main/binary-arm64/Packages.gz
+ e1ffc2991ac9e452ea08e40b81a27921c16d95c0a57920bc9f6d4dcd4bd7fe1e 2063 main/binary-amd64/Packages
+ e10908c62dd9d7c6af7e41875aceaf43076e973d61ff143652ef8afe2d303d21 809 main/binary-amd64/Packages.gz
+ e267c8849b9d6674c7c92d22be6296dd9babba74f6fd9d3527d13ae5f759303f 2063 main/binary-arm64/Packages
+ 4b0ca02a096bea71bcd04c1ccad452357c3f496539a3cbbfb77cfe66c54d3f78 805 main/binary-arm64/Packages.gz
