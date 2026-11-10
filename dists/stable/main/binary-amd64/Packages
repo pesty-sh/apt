@@ -17,6 +17,29 @@ Description: Minimal offline QR code generator
  22.04, and 24.04, and on Debian with glibc 2.27 or newer.
  The program does not contact the network.
 
+Package: rmbin
+Version: 0.0.1-1
+Architecture: amd64
+Homepage: https://pesty.sh
+Section: utils
+Priority: optional
+Maintainer: pesty-sh <pesty@pesty.sh>
+Installed-Size: 871
+Depends: 
+Installed-Size: 861
+Filename: pool/main/r/rmbin/rmbin_0.0.1-1_amd64.deb
+Size: 382876
+MD5sum: 16b45035d56811e6b75f8550eb436c91
+SHA1: 50a66d45c4c27fff2502ec1805185b83adc9a535
+SHA256: 394e7c8566d5cec887afcd323d0bfbb23b0a8f7bc6ab4efd1db5a6c2851da5ed
+Description: Offline file and folder remover. Overwrites with a plain text pattern, syncs to
+ disk, then deletes. No network access, no telemetry. States its limits.
+ Overwrites file contents with a repeating text pattern, syncs to disk, then
+ deletes the name. No network access and no telemetry. Overwriting is best
+ effort on SSDs, copy-on-write filesystems, snapshots, and backups.
+ Installing or removing this package only adds or removes /usr/bin/rmbin.
+ It does not delete your files. There is no warranty. See DISCLAIMER.md.
+
 Package: smashbin
 Version: 0.1.4-1
 Architecture: amd64

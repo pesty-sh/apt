@@ -1,0 +1,22 @@
+Package: rmbin
+Version: 0.0.1-1
+Architecture: i386
+Homepage: https://pesty.sh
+Section: utils
+Priority: optional
+Maintainer: pesty-sh <pesty@pesty.sh>
+Installed-Size: 803
+Depends: 
+Installed-Size: 793
+Filename: pool/main/r/rmbin/rmbin_0.0.1-1_i386.deb
+Size: 387974
+MD5sum: 0fd3392d318dd3281ee63a54cc5f5fd9
+SHA1: 7abd3a9a43778df8890b6c565a0e7ed2d0e4fe38
+SHA256: ba8bf5e77d982a2cb0275e4dd1c081d7e9decc58562d1857b56fbcc9db1c25a1
+Description: Offline file and folder remover. Overwrites with a plain text pattern, syncs to
+ disk, then deletes. No network access, no telemetry. States its limits.
+ Overwrites file contents with a repeating text pattern, syncs to disk, then
+ deletes the name. No network access and no telemetry. Overwriting is best
+ effort on SSDs, copy-on-write filesystems, snapshots, and backups.
+ Installing or removing this package only adds or removes /usr/bin/rmbin.
+ It does not delete your files. There is no warranty. See DISCLAIMER.md.
