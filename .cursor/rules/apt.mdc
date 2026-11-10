@@ -1,0 +1,10 @@
+---
+description: Read the apt skill before publishing or touching the archive key
+alwaysApply: true
+---
+
+# Apt
+
+Before a publish, a signature, `publish.py`, or anything under `.gnupg`, read `.cursor/skills/apt/SKILL.md`.
+
+The private key is only at `/Users/developers/Projects/pesty-sh/apt/.gnupg` on Stuart's Mac. It is gitignored. Fingerprint `2564 D17C 2F8B EC6A 9E59 6BB0 2B0D 9ACE 648D D6FF`. If that directory is not on this machine, stop. Do not create a key.
