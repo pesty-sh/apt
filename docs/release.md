@@ -2,7 +2,7 @@
 
 Installing the programs is the [README](../README.md). The first-time walkthrough is [apt.md](apt.md). This page is for the Mac that publishes a new `.deb`.
 
-Work in `/Users/developers/Projects/pesty-sh/apt`. The branch is `main`. The signing key stays in `.gnupg` on this Mac. qrbin was the first package signed with it. `publish.py` is run here, and nowhere else. A Cursor agent follows [.cursor/skills/publish-apt/SKILL.md](../.cursor/skills/publish-apt/SKILL.md) and stops when that key is not on the machine.
+Work in `/Users/developers/Projects/pesty-sh/apt`. The branch is `main`. The signing key stays in `.gnupg` on this Mac. qrbin was the first package signed with it. `publish.py` is run here, and nowhere else. A Cursor agent reads [.cursor/skills/apt/SKILL.md](../.cursor/skills/apt/SKILL.md) first and stops when that key is not on the machine.
 
 Three packages share this repository:
 
