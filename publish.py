@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Copy qrbin .deb files into this apt repository and sign the index."""
+"""Copy .deb files into this apt repository and sign the index.
+
+qrbin, smashbin, and rmbin are published with this script. It is meant to
+run on the Mac that already holds the signing key. Pass the .deb paths as
+arguments. With no arguments, the script rebuilds the index from whatever
+is already in pool/.
+"""
 
 from __future__ import annotations
 
@@ -17,7 +23,25 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 GNUPG = ROOT / ".gnupg"
-ARCHES = ("amd64", "arm64", "all")
+
+# Debian architecture names this repository will publish.
+#
+# These are the Architecture values inside a .deb, not Rust target triples.
+# publish.py refuses anything else so a typo cannot be indexed under a name
+# apt will never request.
+#
+#   Rust target                         Debian name   Machines
+#   x86_64-unknown-linux-musl           amd64         64-bit Intel and AMD
+#   aarch64-unknown-linux-musl          arm64         64-bit ARM
+#   armv7-unknown-linux-musleabihf      armhf         32-bit ARM (hard float)
+#   i686-unknown-linux-musl             i386          32-bit Intel and AMD
+#
+# qrbin and smashbin ship amd64 and arm64. rmbin also ships armhf and i386.
+# "all" is Debian's name for one package that is identical on every machine
+# (documentation, for example). Each accepted name gets its own
+# dists/stable/main/binary-<arch>/ directory when a package of that
+# architecture is actually present.
+ARCHES = ("amd64", "arm64", "armhf", "i386", "all")
 
 
 def main() -> None:
@@ -61,8 +85,11 @@ def packages_stanza(deb: Path) -> tuple[str, str]:
     data = deb.read_bytes()
     control = read_control(data)
     arch = field(control, "Architecture")
+    # Apt asks for binary-<arch>/Packages using this exact word. armv7 and
+    # i686 are Rust target names; the .deb must say armhf and i386.
     if arch not in ARCHES:
-        raise SystemExit(f"{deb.name} has architecture {arch}")
+        allowed = ", ".join(ARCHES)
+        raise SystemExit(f"{deb.name} has architecture {arch}, which is not one of: {allowed}")
     hashes = [
         f"Installed-Size: {unpacked_kib(data)}",
         f"Filename: {deb.relative_to(ROOT).as_posix()}",
@@ -88,6 +115,13 @@ def write_packages(records: dict[str, list[str]]) -> list[tuple[str, bytes]]:
     written: list[tuple[str, bytes]] = []
     dist = ROOT / "dists" / "stable"
     for arch, stanzas in records.items():
+        # Skip an architecture that has no .deb in pool/. An empty
+        # binary-armhf directory would make apt request a Packages
+        # file that is not there. qrbin and smashbin do not add armhf
+        # or i386. Those indexes appear once a package that ships
+        # them, such as rmbin, is in the pool. The script indexes
+        # every .deb already in pool/, not only the files passed
+        # on this run, so those indexes stay on later publishes.
         if not stanzas:
             continue
         body = ("\n\n".join(stanzas) + "\n").encode()
@@ -110,6 +144,10 @@ def write_release(files: list[tuple[str, bytes]]) -> None:
         f"{days[now.tm_wday]}, {now.tm_mday:02d} {months[now.tm_mon - 1]} {now.tm_year} "
         f"{now.tm_hour:02d}:{now.tm_min:02d}:{now.tm_sec:02d} UTC"
     )
+    # Release lists only the architectures we wrote an index for.
+    # "main/binary-armhf/Packages" -> "armhf". Sorting keeps the line
+    # stable across runs (amd64 arm64 armhf i386, with "all" first
+    # when an architecture-independent package exists).
     arches = sorted({path.split("/")[1].removeprefix("binary-") for path, _ in files})
     header = [
         "Origin: pesty-sh",
@@ -218,12 +256,17 @@ def sign(fingerprint: str) -> None:
 
 
 def export_public_key() -> None:
+    # --yes replaces the key files already committed in this repository.
+    # Without it, GnuPG 2.4 stops on the second publish with "File exists",
+    # after the index has been signed. qrbin and smashbin were published
+    # that way, and rmbin will be too.
     run(
         [
             gpg_bin(),
             "--homedir",
             str(GNUPG),
             "--batch",
+            "--yes",
             "--export",
             "--output",
             str(ROOT / "pesty-archive-keyring.gpg"),
@@ -235,6 +278,7 @@ def export_public_key() -> None:
             "--homedir",
             str(GNUPG),
             "--batch",
+            "--yes",
             "--armor",
             "--export",
             "--output",

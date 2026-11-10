@@ -1,31 +1,44 @@
-# Install qrbin with apt
+# Install pesty-sh packages with apt
 
-qrbin turns text into a QR code image. On Ubuntu and Debian you install it with `apt-get`, the program those systems already use to install software.
+This folder is the package repository apt reads. On the publishing Mac it is `/Users/developers/Projects/pesty-sh/apt`. On GitHub it is [pesty-sh/apt](https://github.com/pesty-sh/apt). Apt downloads it from `https://pesty-sh.github.io/apt`. Homepage: [pesty.sh](https://pesty.sh).
 
-This folder is the package repository apt reads. On the publishing Mac it is `/Users/developers/Projects/pesty-sh/apt`. On GitHub it is [pesty-sh/apt](https://github.com/pesty-sh/apt). Apt downloads it from `https://pesty-sh.github.io/apt`.
+On Ubuntu and Debian you install these programs with `apt-get`, the program those systems already use to install software.
 
-The program's source is [pesty-sh/qrbin](https://github.com/pesty-sh/qrbin). Homepage: [pesty.sh](https://pesty.sh).
+| Package | What it does | Version | Architectures |
+|---|---|---|---|
+| [qrbin](https://github.com/pesty-sh/qrbin) | Turns text into a QR code image. It does not use the network. | `0.1.9-1` | `amd64`, `arm64` |
+| [smashbin](https://github.com/pesty-sh/smashbin) | Strips metadata and shrinks a PNG, JPG, or GIF. It does not use the network. | `0.1.5-1` | `amd64`, `arm64` |
+| [rmbin](https://github.com/pesty-sh/rmbin) | Overwrites a file you name with a repeating text pattern, syncs that write to disk, then deletes the file. It does not use the network. | `0.0.1-1` | `amd64`, `arm64`, `armhf`, `i386` |
+
+`0.1.9-1` means program version `0.1.9` and Debian package revision `1` (the first time that version was packed into a `.deb`). smashbin and rmbin use the same pattern.
+
+rmbin permanently deletes the paths you give it. There is no warranty, and the authors accept no liability for lost files. Installing or removing the package only adds or removes `/usr/bin/rmbin`. It does not delete your files. Overwriting is best effort on SSDs, copy-on-write filesystems, snapshots, and backups. The check further down is `rmbin --version` and a dry run. Neither one deletes anything. Read the [disclaimer](https://github.com/pesty-sh/rmbin/blob/v0.0.1/DISCLAIMER.md) before you point rmbin at a real file.
 
 ## What apt does
 
 You tell `apt-get` a package name. It downloads a `.deb` file (a small archive that contains the program), checks that the file was signed by the key you saved, and unpacks the program into `/usr/bin`.
 
-Ubuntu's archive and Debian's archive do not contain qrbin. The four commands below teach apt about this repository. You run them once. After that, installing and upgrading qrbin is the same kind of command you use for any other package.
+Ubuntu's archive and Debian's archive do not contain these packages. The four commands below teach apt about this repository. You run them once. After that, installing and upgrading is the same kind of command you use for any other package.
 
-The package name is `qrbin`. The version published here is `0.1.9-1`. The `0.1.9` is the program version. The `-1` means this is the first package build of that version.
-
-These systems can install it:
+These systems can install the packages:
 
 | System | Works |
 |---|---|
 | Ubuntu 18.04, 20.04, 22.04, 24.04 | yes |
 | Debian 10, 11, 12, 13 | yes |
 
-Apt picks the build for the machine. Intel and AMD use `amd64`. 64-bit ARM (including a Raspberry Pi 4 or 5 running a 64-bit system) uses `arm64`. You do not type the architecture yourself.
+qrbin and smashbin need `libc6` version 2.27 or newer, which those releases already have. rmbin's `.deb` does not depend on `libc6`. Its own release notes name Ubuntu 14.04 and Debian 8 as the floor for that static build. The table above is the set of systems this install guide covers.
 
-On a Mac, the install is Homebrew: `brew install pesty-sh/tap/qrbin`.
+Apt picks the build for the machine. You do not type the architecture yourself.
 
-smashbin is the second package in this repository. It is built in `/Users/developers/Projects/pesty-sh/rust/smashbin` with `make deb`, then published with the same `publish.py`. The package name is `smashbin`. The published version is `0.1.5-1`. The Mac install is `brew install pesty-sh/tap/smashbin`.
+| Architecture | Machine | Packages |
+|---|---|---|
+| `amd64` | 64-bit Intel and AMD | qrbin, smashbin, rmbin |
+| `arm64` | 64-bit ARM, including a Raspberry Pi 4 or 5 running a 64-bit system | qrbin, smashbin, rmbin |
+| `armhf` | 32-bit ARM | rmbin |
+| `i386` | 32-bit Intel and AMD | rmbin |
+
+On a Mac, the install is Homebrew: `brew install pesty-sh/tap/qrbin`, `brew install pesty-sh/tap/smashbin`, or `brew install pesty-sh/tap/rmbin`.
 
 The long version of this page, with a check of your system and the messages you may see, is [docs/apt.md](docs/apt.md).
 
@@ -48,7 +61,7 @@ echo "deb [signed-by=/usr/share/keyrings/pesty-archive-keyring.gpg] https://pest
   | sudo tee /etc/apt/sources.list.d/pesty.list
 ```
 
-`stable` is the channel name. `main` is the section. Every qrbin package is in that one channel, on every Ubuntu and Debian release in the table above.
+`stable` is the channel name. `main` is the section. qrbin, smashbin, and rmbin are all in that one channel.
 
 Download the package list:
 
@@ -56,27 +69,48 @@ Download the package list:
 sudo apt-get update
 ```
 
-Install the program:
+Install the program you want:
 
 ```bash
 sudo apt-get install qrbin
 ```
 
-`sudo` asks for your password because these commands write into system folders. The program is then `/usr/bin/qrbin`, which is already on your `PATH`.
+```bash
+sudo apt-get install smashbin
+```
+
+```bash
+sudo apt-get install rmbin
+```
+
+`sudo` asks for your password because these commands write into system folders. The program is then `/usr/bin/qrbin`, `/usr/bin/smashbin`, or `/usr/bin/rmbin`. `/usr/bin` is already on your `PATH`.
 
 ## See that it worked
 
+qrbin prints its version, then writes a QR image of the word hello:
+
 ```bash
 qrbin --version
-```
-
-Write a QR image of the word hello:
-
-```bash
 qrbin hello > hello.png
 ```
 
 Open `hello.png` in the image viewer.
+
+smashbin prints its version:
+
+```bash
+smashbin --version
+```
+
+rmbin prints its version. The dry run shows the plan for a throwaway file and does not delete it. Without `--yes`, rmbin would ask you to type `yes` before changing a file. `--dry-run` changes nothing either way.
+
+```bash
+rmbin --version
+printf 'hello\n' > /tmp/rmbin-example.txt
+rmbin --dry-run /tmp/rmbin-example.txt
+```
+
+`rmbin --version` prints `rmbin 0.0.1`.
 
 ## A newer version later
 
@@ -85,7 +119,7 @@ sudo apt-get update
 sudo apt-get install qrbin
 ```
 
-`update` downloads the list again. `install` replaces `/usr/bin/qrbin` when the published version is newer than the one on the machine.
+Use `smashbin` or `rmbin` in place of `qrbin` to upgrade that package. `update` downloads the list again. `install` replaces the program in `/usr/bin` when the published version is newer than the one on the machine.
 
 ## More
 
